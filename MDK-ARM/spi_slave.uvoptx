@@ -168,6 +168,21 @@
         <Ww>
           <count>3</count>
           <WinNumber>1</WinNumber>
+          <ItemText>ctr0,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>4</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>timeX</ItemText>
+        </Ww>
+        <Ww>
+          <count>5</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>ctr2,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>6</count>
+          <WinNumber>1</WinNumber>
           <ItemText>accY</ItemText>
         </Ww>
       </WatchWindow1>
