@@ -1652,7 +1652,7 @@ HAL_StatusTypeDef HAL_SPI_TransmitReceive_IT(SPI_HandleTypeDef *hspi, const uint
 #endif /* __GNUC__ */
 
   /* Check Direction parameter */
-  //assert_param(IS_SPI_DIRECTION_2LINES(hspi->Init.Direction));
+ // assert_param(IS_SPI_DIRECTION_2LINES(hspi->Init.Direction));
 
   /* Lock the process */
   __HAL_LOCK(hspi);
@@ -1692,7 +1692,8 @@ HAL_StatusTypeDef HAL_SPI_TransmitReceive_IT(SPI_HandleTypeDef *hspi, const uint
   {
     hspi->RxISR     = SPI_RxISR_16BIT;
     hspi->TxISR     = SPI_TxISR_16BIT;
-  }*/
+  }
+  */
   
     hspi->RxISR     = SPI_RxISR_8BIT;
     hspi->TxISR     = SPI_TxISR_8BIT;
@@ -1719,18 +1720,19 @@ HAL_StatusTypeDef HAL_SPI_TransmitReceive_IT(SPI_HandleTypeDef *hspi, const uint
       tmp_TxXferCount = hspi->TxXferCount;
     }*/
     /* Transmit data in 16 Bit mode */
-    /*else if (hspi->Init.DataSize > SPI_DATASIZE_8BIT)
-    {
-#if defined (__GNUC__)
+    //else if (hspi->Init.DataSize > SPI_DATASIZE_8BIT)
+    //{
+/*#if defined (__GNUC__)
       *ptxdr_16bits = *((const uint16_t *)hspi->pTxBuffPtr);
 #else
       *((__IO uint16_t *)&hspi->Instance->TXDR) = *((const uint16_t *)hspi->pTxBuffPtr);*/
+
 //#endif /* __GNUC__ */
-      /*hspi->pTxBuffPtr += sizeof(uint16_t);
+     /* hspi->pTxBuffPtr += sizeof(uint16_t);
       hspi->TxXferCount--;
       tmp_TxXferCount = hspi->TxXferCount;
-    }*/
-    /* Transmit data in 8 Bit mode */
+    }
+    // Transmit data in 8 Bit mode */
     
       *((__IO uint8_t *)&hspi->Instance->TXDR) = *((const uint8_t *)hspi->pTxBuffPtr);
       hspi->pTxBuffPtr += sizeof(uint8_t);
@@ -1744,9 +1746,9 @@ HAL_StatusTypeDef HAL_SPI_TransmitReceive_IT(SPI_HandleTypeDef *hspi, const uint
                              SPI_IT_FRE | SPI_IT_MODF | SPI_IT_TSERF));
 
   /*if (hspi->Init.Mode == SPI_MODE_MASTER)
-  {*/
-    /* Start Master transfer */
-    /*SET_BIT(hspi->Instance->CR1, SPI_CR1_CSTART);
+  {
+    // Start Master transfer 
+    SET_BIT(hspi->Instance->CR1, SPI_CR1_CSTART);
   }*/
 
   /* Unlock the process */
