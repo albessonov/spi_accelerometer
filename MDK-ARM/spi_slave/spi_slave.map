@@ -29,11 +29,11 @@ Section Cross References
     main.o(.text.HAL_SPI_TxRxCpltCallback) refers to main.o(.bss.hspi3) for hspi3
     main.o(.text.HAL_SPI_TxRxCpltCallback) refers to main.o(.bss.RXbuf) for RXbuf
     main.o(.text.HAL_SPI_TxRxCpltCallback) refers to main.o(.bss.ctr2) for ctr2
-    main.o(.text.HAL_SPI_TxRxCpltCallback) refers to main.o(.rodata.XGE_Y) for XGE_Y
+    main.o(.text.HAL_SPI_TxRxCpltCallback) refers to main.o(.rodata.XGF_Y) for XGF_Y
     main.o(.text.HAL_SPI_TxRxCpltCallback) refers to main.o(.text.form_acc) for form_acc
     main.o(.text.HAL_SPI_TxRxCpltCallback) refers to main.o(.data.timeY) for timeY
     main.o(.text.HAL_SPI_TxRxCpltCallback) refers to main.o(.bss.ctr0) for ctr0
-    main.o(.text.HAL_SPI_TxRxCpltCallback) refers to main.o(.rodata.XGE_X) for XGE_X
+    main.o(.text.HAL_SPI_TxRxCpltCallback) refers to main.o(.rodata.XGF_X) for XGF_X
     main.o(.text.HAL_SPI_TxRxCpltCallback) refers to main.o(.data.timeX) for timeX
     main.o(.text.HAL_SPI_TxRxCpltCallback) refers to main.o(.bss.resp) for resp
     main.o(.ARM.exidx.text.HAL_SPI_TxRxCpltCallback) refers to main.o(.text.HAL_SPI_TxRxCpltCallback) for [Anonymous Symbol]
@@ -1249,8 +1249,8 @@ Removing Unused input sections from the image.
     Removing main.o(.ARM.exidx.text.SystemClock_Config), (8 bytes).
     Removing main.o(.ARM.exidx.text.Error_Handler), (8 bytes).
     Removing main.o(.ARM.exidx.text.HAL_GPIO_EXTI_Callback), (8 bytes).
-    Removing main.o(.rodata.XGF_X), (3204 bytes).
-    Removing main.o(.rodata.XGF_Y), (3204 bytes).
+    Removing main.o(.rodata.XGE_X), (3204 bytes).
+    Removing main.o(.rodata.XGE_Y), (3204 bytes).
     Removing main.o(.rodata.Request0x0cmd), (4 bytes).
     Removing main.o(.rodata.Request0x2cmd), (4 bytes).
     Removing main.o(.ARM.use_no_argv), (4 bytes).
@@ -2874,8 +2874,8 @@ Image Symbol Table
     __fplib_config_fpu_vfp                   0x08004489   Thumb Code     0  fpinit.o(x$fpl$fpinit)
     __fplib_config_pureend_doubles           0x08004489   Thumb Code     0  fpinit.o(x$fpl$fpinit)
     D1CorePrescTable                         0x0800448a   Data          16  system_stm32h7xx.o(.rodata.D1CorePrescTable)
-    XGE_X                                    0x0800449c   Data        3204  main.o(.rodata.XGE_X)
-    XGE_Y                                    0x08005120   Data        3204  main.o(.rodata.XGE_Y)
+    XGF_X                                    0x0800449c   Data        3204  main.o(.rodata.XGF_X)
+    XGF_Y                                    0x08005120   Data        3204  main.o(.rodata.XGF_Y)
     Region$$Table$$Base                      0x08005da4   Number         0  anon$$obj.o(Region$$Table)
     Region$$Table$$Limit                     0x08005dc4   Number         0  anon$$obj.o(Region$$Table)
     RCOMMAND0x00                             0x24000000   Data           1  main.o(.data.RCOMMAND0x00)
@@ -3089,8 +3089,8 @@ Memory Map of the image
     0x08004470   0x08004470   0x0000001a   Code   RO         1458    x$fpl$fpinit        fz_wv.l(fpinit.o)
     0x0800448a   0x0800448a   0x00000010   Data   RO         1357    .rodata.D1CorePrescTable  system_stm32h7xx.o
     0x0800449a   0x0800449a   0x00000002   PAD
-    0x0800449c   0x0800449c   0x00000c84   Data   RO           25    .rodata.XGE_X       main.o
-    0x08005120   0x08005120   0x00000c84   Data   RO           26    .rodata.XGE_Y       main.o
+    0x0800449c   0x0800449c   0x00000c84   Data   RO           27    .rodata.XGF_X       main.o
+    0x08005120   0x08005120   0x00000c84   Data   RO           28    .rodata.XGF_Y       main.o
     0x08005da4   0x08005da4   0x00000020   Data   RO         1533    Region$$Table       anon$$obj.o
 
 
