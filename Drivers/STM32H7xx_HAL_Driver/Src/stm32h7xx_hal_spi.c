@@ -1652,7 +1652,7 @@ HAL_StatusTypeDef HAL_SPI_TransmitReceive_IT(SPI_HandleTypeDef *hspi, const uint
 #endif /* __GNUC__ */
 
   /* Check Direction parameter */
- // assert_param(IS_SPI_DIRECTION_2LINES(hspi->Init.Direction));
+  //assert_param(IS_SPI_DIRECTION_2LINES(hspi->Init.Direction));
 
   /* Lock the process */
   __HAL_LOCK(hspi);
@@ -1664,7 +1664,7 @@ HAL_StatusTypeDef HAL_SPI_TransmitReceive_IT(SPI_HandleTypeDef *hspi, const uint
     return errorcode;
   }
 
-  /*if ((pTxData == NULL) || (pRxData == NULL) || (Size == 0UL))
+ /* if ((pTxData == NULL) || (pRxData == NULL) || (Size == 0UL))
   {
     errorcode = HAL_ERROR;
     __HAL_UNLOCK(hspi);
@@ -1692,12 +1692,10 @@ HAL_StatusTypeDef HAL_SPI_TransmitReceive_IT(SPI_HandleTypeDef *hspi, const uint
   {
     hspi->RxISR     = SPI_RxISR_16BIT;
     hspi->TxISR     = SPI_TxISR_16BIT;
-  }
-  */
-  
+  }*/
+ 
     hspi->RxISR     = SPI_RxISR_8BIT;
     hspi->TxISR     = SPI_TxISR_8BIT;
-  
 
   /* Set Full-Duplex mode */
   SPI_2LINES(hspi);
@@ -1722,34 +1720,33 @@ HAL_StatusTypeDef HAL_SPI_TransmitReceive_IT(SPI_HandleTypeDef *hspi, const uint
     /* Transmit data in 16 Bit mode */
     //else if (hspi->Init.DataSize > SPI_DATASIZE_8BIT)
     //{
-/*#if defined (__GNUC__)
-      *ptxdr_16bits = *((const uint16_t *)hspi->pTxBuffPtr);
-#else
-      *((__IO uint16_t *)&hspi->Instance->TXDR) = *((const uint16_t *)hspi->pTxBuffPtr);*/
-
+//#if defined (__GNUC__)
+  //    *ptxdr_16bits = *((const uint16_t *)hspi->pTxBuffPtr);
+//#else
+ //     *((__IO uint16_t *)&hspi->Instance->TXDR) = *((const uint16_t *)hspi->pTxBuffPtr);
 //#endif /* __GNUC__ */
      /* hspi->pTxBuffPtr += sizeof(uint16_t);
       hspi->TxXferCount--;
       tmp_TxXferCount = hspi->TxXferCount;
-    }
-    // Transmit data in 8 Bit mode */
-    
+    }*/
+    /* Transmit data in 8 Bit mode */
+   
       *((__IO uint8_t *)&hspi->Instance->TXDR) = *((const uint8_t *)hspi->pTxBuffPtr);
       hspi->pTxBuffPtr += sizeof(uint8_t);
       hspi->TxXferCount--;
       tmp_TxXferCount = hspi->TxXferCount;
-    
+
   }
 
   /* Enable EOT, DXP, UDR, OVR, FRE, MODF and TSERF interrupts */
   __HAL_SPI_ENABLE_IT(hspi, (SPI_IT_EOT | SPI_IT_DXP | SPI_IT_UDR | SPI_IT_OVR |
                              SPI_IT_FRE | SPI_IT_MODF | SPI_IT_TSERF));
 
-  /*if (hspi->Init.Mode == SPI_MODE_MASTER)
-  {
-    // Start Master transfer 
-    SET_BIT(hspi->Instance->CR1, SPI_CR1_CSTART);
-  }*/
+  //if (hspi->Init.Mode == SPI_MODE_MASTER)
+ // {
+    /* Start Master transfer */
+    //SET_BIT(hspi->Instance->CR1, SPI_CR1_CSTART);
+ // }
 
   /* Unlock the process */
   __HAL_UNLOCK(hspi);

@@ -70,7 +70,8 @@ const uint8_t Request0x2cmd[]={0x50,0x00,0x00,0xfc};
 double timeX=-100.5,timeY=-100.5;
 uint8_t RCOMMAND0x00=0b10000100;
 uint8_t RCOMMAND0x02=0b10100100;
-uint16_t collision,ISR,TTF;
+uint16_t collision,ISR,TTF,TTF1,collision1;
+volatile uint32_t TTF2;
 static uint32_t ctr2=0;
 static uint32_t ctr0=0;
 
@@ -150,7 +151,7 @@ int main(void)
   MX_TIM1_Init();
   MX_SPI3_Init();
   /* USER CODE BEGIN 2 */
-  HAL_TIM_Base_Start(&htim1);
+  HAL_TIM_Base_Start_IT(&htim1);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -160,8 +161,18 @@ int main(void)
 		if(timeX==0)
 		{
 		  HAL_GPIO_WritePin(GPIOC,GPIO_PIN_9,GPIO_PIN_SET);
-			collision=TIM1->CNT;
+			TTF2 = 0;
 		}
+		if(timeX >= 0.5 && timeX <= 1.0)
+		{
+			TTF1=TIM1->CNT;
+		}
+		if(timeX>=12.0)
+		{
+		  
+			TTF1=TIM1->CNT;
+		}
+		
 		HAL_SPI_TransmitReceive_IT(&hspi3,resp,RXbuf,4);//1000);		
 		//if(timeX==300||timeY==300) break;
 	}	
@@ -301,9 +312,9 @@ static void MX_TIM1_Init(void)
 
   /* USER CODE END TIM1_Init 1 */
   htim1.Instance = TIM1;
-  htim1.Init.Prescaler = 239;
+  htim1.Init.Prescaler = 39;
   htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim1.Init.Period = 65535;
+  htim1.Init.Period = 100;
   htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim1.Init.RepetitionCounter = 0;
   htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
@@ -446,6 +457,16 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 		TTF=ISR-collision;
 	}
 }
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+		if(htim->Instance == TIM1) //check if the interrupt comes from TIM1
+		{
+			TTF2++; 
+			//HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_9); DEBUG
+		}
+}
+
+
 /* USER CODE END 4 */
 
 /**
